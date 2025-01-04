@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import login from "../../assets/images/login/login.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+
 const Login = () => {
+    const {signIn} = useContext(AuthContext)
+
+    const handleLogin = (e) => { 
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email,password);
+
+    signIn(email, password)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+    })
+    .catch(error => {
+        console.log(error)
+    })
+
+    }
+
   return (
     <div className="grid grid-cols-1 gap-16 my-10 md:grid-cols-2">
       <div>
@@ -10,7 +32,7 @@ const Login = () => {
       <div className="">
         <div className="w-full  border-2 p-4 rounded-xl md:px-20 md:py-6 dark:bg-gray-50 dark:text-gray-800">
           <h1 className="text-4xl my-6 font-bold text-center">Login</h1>
-          <form noValidate="" action="" className="space-y-6">
+          <form onSubmit={handleLogin} action="" className="space-y-6">
             <div className="space-y-1 text-lg">
               <label
                 htmlFor="email"

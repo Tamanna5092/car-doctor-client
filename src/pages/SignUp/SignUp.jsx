@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import signup from "../../assets/images/login/login.svg";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUp = () => {
+    const {createUser, error, setError} = useContext(AuthContext);
+
+    const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    const confirm_password = form.confirm_password.value
+    console.log(name, email, photo, password, confirm_password);
+
+    if(password.length < 6){
+        setError('Password must be at least 6 characters');
+        return
+    }
+    else if(password !== confirm_password){
+        setError('Password does not match');
+        return
+    }
+
+    createUser(email, password)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+    })
+    .catch(error => {
+        console.log(error)
+    })
+    }
+
   return (
     <div className="grid grid-cols-1 gap-16 my-10 md:grid-cols-2">
       <div>
@@ -15,7 +47,7 @@ const SignUp = () => {
             Sign up to create your account
           </p>
         </div>
-        <form noValidate="" action="" className="">
+        <form onSubmit={handleSignUp} className="">
           <div className="space-y-4">
             <div>
               <label htmlFor="name" className="block mb-2 text-lg">
@@ -48,7 +80,7 @@ const SignUp = () => {
                 Photo URL
               </label>
               <input
-                type="photo"
+                type="text"
                 name="photo"
                 id="photo"
                 placeholder="Photo"
@@ -73,14 +105,14 @@ const SignUp = () => {
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="password" className="text-lg">
-                  Confirem Password
+                <label htmlFor="confirm_password" className="text-lg">
+                  Confirm Password
                 </label>
               </div>
               <input
                 type="password"
-                name="password"
-                id="password"
+                name="confirm_password"
+                id="confirm_password"
                 placeholder="******"
                 className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
                 required
@@ -88,12 +120,12 @@ const SignUp = () => {
             </div>
           </div>
           <button
-            type="button"
             className="w-full mt-10 py-2 font-semibold text-white text-xl bg-[#FF3811] border-[#FF3811] rounded-md dark:bg-violet-600 dark:text-gray-50"
           >
             Sign Up
-          </button>
+            </button>
         </form>
+        {error && <p className="text-center text-[#FF3811] mt-4">{error}</p>}
         <p className="px-6 my-6 text-center dark:text-gray-600">
           Already have an account?{" "}
           <Link
