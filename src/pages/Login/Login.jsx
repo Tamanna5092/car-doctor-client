@@ -1,36 +1,43 @@
 import React from "react";
 import login from "../../assets/images/login/login.svg";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
-    <div className="grid grid-cols-1 gap-6 my-10 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-16 my-10 md:grid-cols-2">
       <div>
-        <img src={login} alt="" />
+        <img className="w-full" src={login} alt="" />
       </div>
       <div className="">
-        <div className="w-full max-w-md p-8 border-2 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
-          <h1 className="text-2xl font-bold text-center">Login</h1>
+        <div className="w-full  border-2 p-4 rounded-xl md:px-20 md:py-6 dark:bg-gray-50 dark:text-gray-800">
+          <h1 className="text-4xl my-6 font-bold text-center">Login</h1>
           <form noValidate="" action="" className="space-y-6">
             <div className="space-y-1 text-lg">
-              <label htmlFor="username" className="block font-semibold dark:text-gray-600">
-                Username
+              <label
+                htmlFor="email"
+                className="block font-semibold dark:text-gray-600"
+              >
+                Email
               </label>
               <input
                 type="text"
-                name="username"
-                id="username"
-                placeholder="Username"
+                name="email"
+                id="email"
+                placeholder="Email"
                 className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
               />
             </div>
             <div className="space-y-1 text-lg">
-              <label htmlFor="password" className="block font-semibold dark:text-gray-600">
+              <label
+                htmlFor="password"
+                className="block font-semibold dark:text-gray-600"
+              >
                 Password
               </label>
               <input
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Password"
+                placeholder="******"
                 className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
               />
               <div className="flex justify-end text-xs dark:text-gray-600">
@@ -39,13 +46,13 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <button className="block w-full p-3 text-center text-white text-xl font-semibold bg-[#FF3811] border-[#FF3811] rounded-sm dark:text-gray-50 dark:bg-violet-600">
+            <button className="block w-full p-3 text-center text-white text-xl font-semibold rounded-lg bg-[#FF3811] border-[#FF3811] dark:text-gray-50 dark:bg-violet-600">
               Sign in
             </button>
           </form>
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-            <p className="px-3 text-lg dark:text-gray-600">
+            <p className="px-3 text-lg my-3 dark:text-gray-600">
               Login with social accounts
             </p>
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
@@ -79,15 +86,16 @@ const Login = () => {
               </svg>
             </button>
           </div>
-          <p className="text-center sm:px-6 dark:text-gray-600">
-            Don't have an account?
-            <a
+          <p className="text-center my-3 sm:px-6 dark:text-gray-600">
+            Don't have an account?{" "}
+            <Link
+              to="/signup"
               rel="noopener noreferrer"
               href="#"
-              className="underline dark:text-gray-800"
+              className="text-[#FF3811] hover:underline dark:text-gray-800"
             >
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>
