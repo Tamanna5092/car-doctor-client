@@ -6,7 +6,7 @@ const Checkout = () => {
   const service = useLoaderData();
   const { title, price, services_id } = service;
   return (
-    <div>
+    <div className='mt-10'>
         {/* image */}
       <div className="relative">
         <img className="w-full" src={checkout} alt="" />
