@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import checkout from "../../assets/images/checkout/checkout.png";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Checkout = () => {
   const service = useLoaderData();
-  const { title, price, services_id } = service;
+  const { title, price, _id, img} = service;
+  const {user} = useContext(AuthContext);
+
+  const handleCheckOut = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const date = form.date.value;
+    const price = form.price.value;
+    const email = form.email.value; 
+    const booking ={
+      customerName: name,
+      email,
+      date,
+      service_title: title,
+      image: img,
+      service_id: _id,
+      price,
+    } 
+    console.log(booking)
+
+    fetch('http://localhost:5000/bookings', {
+      
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(booking)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.insertedId) {
+        alert('Service placed successfully')
+      }
+    })
+
+  }
+
+
   return (
     <div className='mt-10'>
         {/* image */}
@@ -22,50 +62,49 @@ const Checkout = () => {
       {/* checkout form */}
       <section className="my-20 bg-[#F3F3F3] dark:bg-gray-100 dark:text-gray-900">
         <form
+          onSubmit={handleCheckOut}
           action=""
           className="container flex flex-col mx-auto space-y-12 p-4 py-14 md:p-24"
         >
           <div className="grid grid-cols-6 gap-6 col-span-full lg:col-span-3">
             <div className="col-span-full sm:col-span-3">
+            <label htmlFor="name" className="text-lg">Name</label>
               <input
-                id="firstname"
+                id="name"
                 type="text"
-                placeholder="First Name"
+                placeholder="Name"
+                defaultValue={user?.displayName}
                 className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
               />
             </div>
             <div className="col-span-full sm:col-span-3">
+              <label htmlFor="date" className="text-lg">Service Date</label>
               <input
-                id="lastname"
-                type="text"
-                placeholder="Last Name"
+                id="date"
+                type="date"
+                placeholder="Date"
                 className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
               />
             </div>
             <div className="col-span-full sm:col-span-3">
+              <label htmlFor="price" className="text-lg">Price</label>
               <input
-                id="photo"
+                id="price"
                 type="text"
-                placeholder="Your Photo"
+                placeholder="Price"
+                defaultValue={price}
                 className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
               />
             </div>
             <div className="col-span-full sm:col-span-3">
+              <label htmlFor="email" className="text-lg">Your Email</label>
               <input
                 id="email"
                 type="text"
                 placeholder="Your Email"
+                defaultValue={user?.email}
                 className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
               />
-            </div>
-            <div className="col-span-full">
-              <textarea
-                id="message"
-                cols="30"
-                rows="10"
-                placeholder="Your Message"
-                className="w-full rounded-md p-3 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
-              ></textarea>
             </div>
             <div className="col-span-full">
               <input
