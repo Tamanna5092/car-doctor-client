@@ -1,14 +1,9 @@
 import React from "react";
 
-const Booking = ({ booking }) => {
-  const { _id, price, service_title, email, image, date } = booking;
+const Booking = ({ booking, handleDelete, handleBookingConfirm }) => {
+  const { _id, price, service_title, email, image, date, status } = booking;
 
-  const handleDelete = id => {
-    const proceed = confirm('Are you sure you want to delete?');
-    if(proceed){
-     
-    }
-  }
+ 
   return (
     <tr>
       <th>
@@ -45,7 +40,10 @@ const Booking = ({ booking }) => {
       <td>{date}</td>
       <td>{price}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        {
+          status === 'confirm'? <span>Confirmed</span> : 
+          <button onClick={()=> {handleBookingConfirm(_id)}} className="btn btn-ghost btn-xs">Confirm</button>
+        }
       </th>
     </tr>
   );
