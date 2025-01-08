@@ -19,6 +19,9 @@ const Navbar = () => {
     <li><Link to="">Services</Link></li>
     <li><Link to="">Blog</Link></li>
     <li><Link to="">Contact</Link></li>
+    {user? 
+    <li><Link to="/orderBook">Order Book</Link></li> : <></>
+    }
     </>
     return (
         <div className="navbar bg-base-100">
@@ -55,7 +58,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     <a className="btn btn-outline text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811]">Appointment</a>
-   {user?  <button onClick={handleLogOut} className="btn btn-outline text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811]">Logout</button> : <Link to={'/login'} className="btn btn-outline text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811]">Login</Link>}
+   {user?
+    <button onClick={handleLogOut} className="btn btn-outline text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811]">Logout</button> : <Link to={'/login'} className="btn btn-outline text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811]">Login</Link>}
   </div>
 </div>
     );

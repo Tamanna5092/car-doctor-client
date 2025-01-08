@@ -22,7 +22,7 @@ const AddService = () => {
         <div className="relative">
           <img className="w-full" src={service} alt="" />
           <div className="absolute h-full flex text-white top-0 left-0 items-center bg-gradient-to-r from-[#151515] to-[#15151500]">
-            <h1 className="text-5xl font-bold pl-4 md:pl-24">
+            <h1 className="text-4xl font-bold pl-4 md:pl-24">
               Add New Service
             </h1>
           </div>

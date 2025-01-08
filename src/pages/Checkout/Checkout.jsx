@@ -51,7 +51,7 @@ const Checkout = () => {
       <div className="relative">
         <img className="w-full" src={checkout} alt="" />
         <div className="absolute h-full flex text-white top-0 left-0 items-center bg-gradient-to-r from-[#151515] to-[#15151500]">
-          <h1 className="text-5xl font-bold pl-4 md:pl-24">Checkout</h1>
+          <h1 className="text-4xl font-bold pl-4 md:pl-24">Checkout</h1>
         </div>
         <div className="absolute w-full flex justify-center bottom-0">
           <p className="text-xl text-white font-medium bg-[#FF3811] px-8 py-3">
