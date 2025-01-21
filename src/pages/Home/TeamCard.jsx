@@ -47,7 +47,7 @@ const TeamCard = () => {
     >
       {
         teams.map((team => <SwiperSlide>
-          <div className="card w-96 border-2">
+          <div className="card w-96 border-2 cursor-grab">
             <figure className="p-6">
               <img src={team.profile_picture} alt="" className="rounded-xl" />
             </figure>

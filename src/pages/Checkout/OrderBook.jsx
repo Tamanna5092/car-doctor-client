@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import checkout from "../../assets/images/checkout/checkout.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import BookingRow from "./BookingRow";
+import axios from "axios";
 
 const OrderBook = () => {
   const { user } = useContext(AuthContext);
@@ -9,12 +10,10 @@ const OrderBook = () => {
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBookings(data);
-      });
+    axios.get(url, { withCredentials:true })
+    .then(res => {
+      setBookings(res.data)
+    })
   }, []);
 
   const handleDelete = id => {
