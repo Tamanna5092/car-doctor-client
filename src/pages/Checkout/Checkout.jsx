@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+ import { useLoaderData } from "react-router-dom";
 import checkout from "../../assets/images/checkout/checkout.png";
-import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../hook/useAuth"; 
 
 const Checkout = () => {
   const service = useLoaderData();
   const { title, price, _id, img} = service;
-  const {user} = useContext(AuthContext);
+  const { user } = useAuth()
 
   const handleCheckOut = (e) => {
     e.preventDefault();

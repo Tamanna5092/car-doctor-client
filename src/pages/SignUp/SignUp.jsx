@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import signup from "../../assets/images/login/login.svg";
-import { AuthContext } from "../../provider/AuthProvider";
+import signup from "../../assets/images/login/login.svg"; 
+import useAuth from "../../hook/useAuth";
 
-const SignUp = () => {
-    const {createUser, error, setError} = useContext(AuthContext);
+const SignUp = () => { 
+    const { createUser, error, setError } = useAuth()
 
     const handleSignUp = (e) => {
     e.preventDefault();
