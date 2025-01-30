@@ -16,7 +16,7 @@ const Login = () => {
     signIn(email, password)
     .then(result => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         alert('Login Successful')
         navigate(location?.state? location.state : "/")
     })
