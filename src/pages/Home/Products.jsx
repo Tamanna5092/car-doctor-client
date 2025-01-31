@@ -15,7 +15,7 @@ const Products = () => {
 
   return (
     <div>
-      <div className="text-center">
+      <div className="text-center mx-2 md:mx-0">
         <h3 className="text-[#FF3811] text-xl font-bold">Popular Products</h3>
         <h1 className="text-5xl font-bold my-5">Browse Our Products</h1>
         <p className="text-[#737373]">
