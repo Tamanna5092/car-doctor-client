@@ -7,7 +7,7 @@ const AddService = () => {
         e.preventDefault();
         const form = e.target;
         const service_name = form.service_name.value;
-        const service_price = form.service_price.value;
+        const service_price = parseInt(form.service_price.value);
         const service_type = form.service_type.value;
         const text = form.text.value;
         const description = form.description.value;

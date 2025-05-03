@@ -3,8 +3,19 @@ import ServiceCard from "./ServiceCard";
 import useServices from "../../hook/useServices";
 
 const Services = () => { 
-  const services = useServices()
+  const [asc, setAsc] = useState(true)
+  const [search, setSearch] = useState('')
+  const services = useServices(asc, search)
   const [dataLength, setDataLength] = useState(3);
+
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const search = e.target.search.value;
+    console.log(search)
+    setSearch(search)
+  }
+
 
   return (
     <div>
@@ -21,6 +32,16 @@ const Services = () => {
           tire rotations to advanced diagnostics and engine repairs, we cover it
           all.
         </p>
+      </div>
+      <div className="text-center my-5">
+      <form onSubmit={handleSearch} className="mb-5">
+        <input type="text" name="search" id="" className="p-3 rounded-lg border-2"/>
+        <input type="submit" value="Search" className="btn text-[#FF3811] hover:text-white hover:bg-[#FF3811]"/>
+      </form>
+      <button className="btn btn-primary hover:bg-[#FF3811] border-none"
+      onClick={()=> setAsc(!asc)}>
+        {asc ? '↑ Price: Low To High' : '↓ Price: High To Low'}
+        </button>
       </div>
       <div>
         <div className="grid grid-cols-1 gap-6 my-12 md:grid-cols-2 lg:grid-cols-3">

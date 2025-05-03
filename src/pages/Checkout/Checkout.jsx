@@ -12,7 +12,7 @@ const Checkout = () => {
     const form = e.target;
     const name = form.name.value;
     const date = form.date.value;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const email = form.email.value; 
     const booking ={
       customerName: name,
